@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Simple</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    #busqueda {
+      width: 100%;
+      max-width: 400px;
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+    .producto {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .producto img {
+      width: 100%;
+      max-width: 200px;
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Catálogo</h1>
+  <input type="text" id="busqueda" placeholder="Buscar productos...">
+
+  <div id="catalogo"></div>
+
+  <script>
+    const productos = [
+      {
+        nombre: "Reloj Deportivo",
+        descripcion: "Resistente al agua, ideal para correr.",
+        precio: 29.99,
+        imagen: "https://via.placeholder.com/200x200?text=Reloj"
+      },
+      {
+        nombre: "Perfume Sauvage",
+        descripcion: "Aroma intenso y duradero.",
+        precio: 59.90,
+        imagen: "https://via.placeholder.com/200x200?text=Perfume"
+      },
+      {
+        nombre: "Collar de Acero",
+        descripcion: "Accesorio moderno unisex.",
+        precio: 15.50,
+        imagen: "https://via.placeholder.com/200x200?text=Collar"
+      }
+    ];
+
+    const catalogo = document.getElementById("catalogo");
+    const inputBusqueda = document.getElementById("busqueda");
+
+    function mostrarProductos(filtro = "") {
+      const texto = filtro.toLowerCase();
+      catalogo.innerHTML = "";
+
+      productos
+        .filter(p => p.nombre.toLowerCase().includes(texto))
+        .forEach(p => {
+          catalogo.innerHTML += `
+            <div class="producto">
+              <img src="${p.imagen}" alt="${p.nombre}">
+              <h2>${p.nombre}</h2>
+              <p>${p.descripcion}</p>
+              <p><strong>Precio:</strong> $${p.precio}</p>
+            </div>
+          `;
+        });
+    }
+
+    inputBusqueda.addEventListener("input", () => mostrarProductos(inputBusqueda.value));
+
+    mostrarProductos();
+  </script>
+
+</body>
+</html>
