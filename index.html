@@ -1,90 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Simple</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #f4f4f4;
-    }
-    #busqueda {
-      width: 100%;
-      max-width: 400px;
-      padding: 8px;
-      margin-bottom: 20px;
-    }
-    .producto {
-      background: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .producto img {
-      width: 100%;
-      max-width: 200px;
-      display: block;
-      margin-bottom: 10px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yitu - Catálogo Digital</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header>
+    <h1><img src="img/logo.png" alt="Logo Yitu" class="logo"> Yitu</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="#" data-seccion="inicio">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Categorías</a>
+          <ul class="submenu">
+            <li><a href="#" data-seccion="perfumes">Perfumes</a></li>
+            <li><a href="#" data-seccion="accesorios">Accesorios</a></li>
+            <li><a href="#" data-seccion="hogar">Hogar</a></li>
+            <li><a href="#" data-seccion="tecnologia">Tecnología</a></li>
+          </ul>
+        </li>
+        <li><a href="#" data-seccion="redes">Redes</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <h1>Catálogo</h1>
-  <input type="text" id="busqueda" placeholder="Buscar productos...">
+  <main id="contenido">
+    <!-- El contenido se carga dinámicamente con JS -->
+  </main>
 
-  <div id="catalogo"></div>
+ <footer>
+  <div class="redes">
+    <a href="#" id="whatsapp" target="_blank">
+      <img src="img/whatsapp_icon_pequeño.png" alt="WhatsApp" class="social-icon">
+      WhatsApp
+    </a>
+    <a href="#" id="facebook" target="_blank">
+      <img src="img/facebook_icon_130940.png" alt="Facebook" class="social-icon">
+      Facebook
+    </a>
+    <a href="#" id="instagram" target="_blank">
+      <img src="img/Instagram_icon-icons.com_66804.png" alt="Instagram" class="social-icon">
+      Instagram
+    </a>
+    <a href="#" id="tiktok" target="_blank">
+      <img src="img/tiktok_logo_icon_186896.png" alt="TikTok" class="social-icon">
+      TikTok
+    </a>
+  </div>
+  <p>&copy; 2025 Yitu. Todos los derechos reservados.</p>
+</footer>
 
-  <script>
-    const productos = [
-      {
-        nombre: "Reloj",
-        descripcion: "Resistente al agua, ideal para correr.",
-        precio: 29.99,
-        imagen: "https://via.placeholder.com/200x200?text=Reloj"
-      },
-      {
-        nombre: "Perfume Sauvage",
-        descripcion: "Aroma intenso y duradero.",
-        precio: 59.90,
-        imagen: "https://via.placeholder.com/200x200?text=Perfume"
-      },
-      {
-        nombre: "Collar de cuero",
-        descripcion: "Accesorio moderno unisex.",
-        precio: 15.50,
-        imagen: "https://via.placeholder.com/200x200?text=Collar"
-      }
-    ];
-
-    const catalogo = document.getElementById("catalogo");
-    const inputBusqueda = document.getElementById("busqueda");
-
-    function mostrarProductos(filtro = "") {
-      const texto = filtro.toLowerCase();
-      catalogo.innerHTML = "";
-
-      productos
-        .filter(p => p.nombre.toLowerCase().includes(texto))
-        .forEach(p => {
-          catalogo.innerHTML += `
-            <div class="producto">
-              <img src="${p.imagen}" alt="${p.nombre}">
-              <h2>${p.nombre}</h2>
-              <p>${p.descripcion}</p>
-              <p><strong>Precio:</strong> $${p.precio}</p>
-            </div>
-          `;
-        });
-    }
-
-    inputBusqueda.addEventListener("input", () => mostrarProductos(inputBusqueda.value));
-
-    mostrarProductos();
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
